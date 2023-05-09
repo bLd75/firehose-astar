@@ -1,0 +1,16 @@
+            _____         __
+           / __(_)______ / /  ___  ___ ___
+          / _// / __/ -_) _ \/ _ \(_-</ -_)
+         /_/ /_/_/  \__/_//_/\___/___/\__/
+
+Welcome to this node manager pod, common commands:
+ - Show version                       fireastar --version
+
+Node manager commands (astar-... <tab> to show all):
+ - Check if running                   astar-is-running
+
+ - Debug Firehose logs for 30s       astar-debug-firehose-logs-30s
+ - Stop instance                      astar-maintenance
+ - Start or restart instance          astar-resume
+
+ - RPC Head Block                     astar-rpc-head-block

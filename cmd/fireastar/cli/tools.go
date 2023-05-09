@@ -14,7 +14,7 @@
 
 package cli
 
-import "github.com/streamingfast/firehose-acme/tools"
+import "github.com/streamingfast/firehose-astar/tools"
 
 func init() {
 	RootCmd.AddCommand(tools.Cmd)

@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package sf.acme.type.v1;
+package sf.astar.type.v1;
 
-option go_package = "github.com/streamingfast/firehose-acme/types/pb/sf/acme/type/v1;pbacme";
+option go_package = "github.com/streamingfast/firehose-astar/types/pb/sf/astar/type/v1;pbastar";
 
 message Block {
   uint64 height = 1;

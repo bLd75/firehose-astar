@@ -19,12 +19,12 @@ https://github.com/streamingfast/proto-ethereum/blob/develop/sf/ethereum/codec/v
 
 We have built an end-to-end template, to start the on-boarding process of new chains. This solution consist of:
 
-*firehose-acme*
+*firehose-astar*
 As mentioned above, the `Reader` process consumes the data that is extracted and streamed from `Firehose`. In Actuality the Reader
 is one process out of multiple ones that creates the _Firehose_. These processes are launched by one application. This application is
 chain specific and by convention, we name is "firehose-<chain-name>". Though this application is chain specific, the structure of the application
 is standardized and is quite similar from chain to chain. For convenience, we have create a boiler plate app to help you get started.
-We named our chain `Acme` this the app is [firehose-acme](https://github.com/streamingfast/firehose-acme)
+We named our chain `Astar` this the app is [firehose-astar](https://github.com/streamingfast/firehose-astar)
 
 *Firehose Logs*
 Firehose logs consist of an instrumented syncing node. We have created a "dummy-blockchain" chain to simulate a node process syncing that can be found [https://github.com/streamingfast/dummy-blockchain](https://github.com/streamingfast/dummy-blockchain).
@@ -47,15 +47,15 @@ Ensure the build was successful
 ./dummy-blockchain --version
 ```
 
-Take note of the location of the built `dummy-blockchain` binary, you will need to configure `firehose-acme` with it.
+Take note of the location of the built `dummy-blockchain` binary, you will need to configure `firehose-astar` with it.
 
-## Setting up firehose-acme
+## Setting up firehose-astar
 
 Clone the repository:
 
 ```bash
-git clone git@github.com:streamingfast/firehose-acme.git
-cd firehose-acme
+git clone git@github.com:streamingfast/firehose-astar.git
+cd firehose-astar
 ```
 
 Configure firehose test etup
@@ -71,12 +71,12 @@ modify the flag `reader-node-path: "dchain"` to point to the path of your `dchai
 
 *all subsequent commands are run from the `devel/standard/` directory*
 
-Start `fireacme`
+Start `fireastar`
 ```bash
 ./start.sh
 ```
 
-This will launch `fireacme` application. Behind the scenes we are starting 3 sub processes: `reader-node`, `relayer`, `firehose`
+This will launch `fireastar` application. Behind the scenes we are starting 3 sub processes: `reader-node`, `relayer`, `firehose`
 
 *reader-node*
 
@@ -105,7 +105,7 @@ ls -las ./firehose-data/storage/merged-blocks
 We have also built tools that allow you to introspect block files:
 
 ```bash
-go install ../../cmd/fireacme && fireacme tools print blocks --store ./firehose-data/storage/merged-blocks 100
+go install ../../cmd/fireastar && fireastar tools print blocks --store ./firehose-data/storage/merged-blocks 100
 ```
 
 At this point we have `reader-node` process running as well a `relayer` & `firehose` process. Both of these processes work together to provide the Firehose data stream.
@@ -118,15 +118,15 @@ grpcurl -plaintext localhost:18015 list
 We can start streaming blocks with `sf.firehose.v2.Stream` Service:
 
 ```bash
-grpcurl -plaintext -d '{"start_block_num": 10}' -import-path ./proto -proto sf/acme/type/v1/type.proto localhost:18015 sf.firehose.v2.Stream.Blocks
+grpcurl -plaintext -d '{"start_block_num": 10}' -import-path ./proto -proto sf/astar/type/v1/type.proto localhost:18015 sf.firehose.v2.Stream.Blocks
 ```
 
-# Using `firehose-acme` as a template
+# Using `firehose-astar` as a template
 
-One of the main reason we provide a `firehose-acme` repository is to act as a template element that integrators can use to bootstrap
+One of the main reason we provide a `firehose-astar` repository is to act as a template element that integrators can use to bootstrap
 creating the required Firehose chain specific code.
 
-We purposely used `Acme` (and also `acme` and `ACME`) throughout this repository so that integrators can simply copy everything and perform
+We purposely used `Astar` (and also `astar` and `ASTAR`) throughout this repository so that integrators can simply copy everything and perform
 a global search/replace of this word and use their chain name instead.
 
 As well as this, there is a few files that requires a renaming. Would will find below the instructions to properly make the search/replace
@@ -134,10 +134,10 @@ as well as the list of files that should be renamed.
 
 ## Cloning
 
-First step is to clone again `firehose-acme` this time to a dedicated repository that will be the one of your chain:
+First step is to clone again `firehose-astar` this time to a dedicated repository that will be the one of your chain:
 
 ```
-git clone git@github.com:streamingfast/firehose-acme.git firehose-<chain>
+git clone git@github.com:streamingfast/firehose-astar.git firehose-<chain>
 ```
 
 > Don't forget to change `<chain>` by the name of your exact chain like `aptos` so it would became `firehose-aptos`
@@ -165,34 +165,34 @@ git commit -m "Initial commit"
 
 Perform a **case-sensitive** search/replace for the following terms:
 
-- `acme` -> `<chain>`
-- `Acme` -> `<Chain>`
-- `ACME` -> `<CHAIN>`
+- `astar` -> `<chain>`
+- `Astar` -> `<Chain>`
+- `ASTAR` -> `<CHAIN>`
 
 > Don't forget to change `<chain>` (and their variants) by the name of your exact chain like `aptos` so it would became `aptos`, `Aptos` and `APTOS` respectively.
 
-> VSCode (and probably others) have a search/replace that respects the original casing of the occurrences found, you can use it to perform a single search/replace of `acme` with the respect original casing option activated.
+> VSCode (and probably others) have a search/replace that respects the original casing of the occurrences found, you can use it to perform a single search/replace of `astar` with the respect original casing option activated.
 
 ### Files
 
 ```
-git mv ./devel/fireacme ./devel/fireaptos
-git mv ./cmd/fireacme ./cmd/fireaptos
-git mv ./tools/fireacme/scripts/acme-is-running ./tools/fireacme/scripts/aptos-is-running
-git mv ./tools/fireacme/scripts/acme-rpc-head-block ./tools/fireacme/scripts/aptos-rpc-head-block
-git mv ./tools/fireacme/scripts/acme-resume ./tools/fireacme/scripts/aptos-resume
-git mv ./tools/fireacme/scripts/acme-command ./tools/fireacme/scripts/aptos-command
-git mv ./tools/fireacme/scripts/acme-debug-firehose-logs-30s ./tools/fireacme/scripts/aptos-debug-deep-mind-30s
-git mv ./tools/fireacme/scripts/acme-maintenance ./tools/fireacme/scripts/aptos-maintenance
-git mv ./tools/fireacme ./tools/fireaptos
-git mv ./types/pb/sf/acme ./types/pb/sf/aptos
+git mv ./devel/fireastar ./devel/fireaptos
+git mv ./cmd/fireastar ./cmd/fireaptos
+git mv ./tools/fireastar/scripts/astar-is-running ./tools/fireastar/scripts/aptos-is-running
+git mv ./tools/fireastar/scripts/astar-rpc-head-block ./tools/fireastar/scripts/aptos-rpc-head-block
+git mv ./tools/fireastar/scripts/astar-resume ./tools/fireastar/scripts/aptos-resume
+git mv ./tools/fireastar/scripts/astar-command ./tools/fireastar/scripts/aptos-command
+git mv ./tools/fireastar/scripts/astar-debug-firehose-logs-30s ./tools/fireastar/scripts/aptos-debug-deep-mind-30s
+git mv ./tools/fireastar/scripts/astar-maintenance ./tools/fireastar/scripts/aptos-maintenance
+git mv ./tools/fireastar ./tools/fireaptos
+git mv ./types/pb/sf/astar ./types/pb/sf/aptos
 ```
 
 ### Node
 
 Doing a Firehose integration means there is an instrumented node that emits Firehose logs (or if not a node directly, definitely a process that reads and emits Firehose logs).
 
-#### [cmd/fireacme/cli/constants.go](cmd/fireacme/cli/constants.go)
+#### [cmd/fireastar/cli/constants.go](cmd/fireastar/cli/constants.go)
 
 - Replace `ChainExecutableName = "dummy-blockchain"` by the `ChainExecutableName = "<binary>"` where `<binary>` is the node's binary name that should be launched.
 
@@ -203,7 +203,7 @@ Doing a Firehose integration means there is an instrumented node that emits Fire
 
 ### Dockerfile(s) & GitHub Actions
 
-There is two Docker image created by a build of `firehose-acme`. First, a version described as _vanilla_ where only `fireacme` Golang binary is included and another one described as _bundle_ which includes both the `firacme` binary and the chain's binary that `reader-node` launches.
+There is two Docker image created by a build of `firehose-astar`. First, a version described as _vanilla_ where only `fireastar` Golang binary is included and another one described as _bundle_ which includes both the `firastar` binary and the chain's binary that `reader-node` launches.
 
 Here the files that needs to be modified for this. The Dockerfile are all built on Ubuntu 20.04 images.
 
@@ -234,7 +234,7 @@ A quirks of the current setup is that `types` folder is actually a dedicated Gol
 1. `git add -A types`
 1. `git commit -m "Re-generated Protobuf types"`
 1. `git push`
-1. `go get github.com/streamingfast/firehose-acme/types@master`
+1. `go get github.com/streamingfast/firehose-astar/types@master`
 
 Now the main module has its `types` dependency updated with the newly generated Golang Protobuf code.
 
@@ -258,7 +258,7 @@ If everything is fine at that point, you are ready to commit everything and push
 
 ```
 git add -A .
-git commit -m "Renamed Acme to <Chain>"
+git commit -m "Renamed Astar to <Chain>"
 git add remote origin <url>
 git push
 ```

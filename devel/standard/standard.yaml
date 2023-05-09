@@ -6,6 +6,6 @@ start:
   - relayer
   flags:
     # Specifies the path to the binary
-    reader-node-path: "dummy-blockchain"
-    # Flags that will be added to the dummy chain process command
-    reader-node-arguments: +--firehose-enabled --block-rate=60
+    reader-node-path: "astar-collator"
+    # Flags that will be added to the astar chain process command
+    reader-node-arguments: +--chain astar --rpc-cors all --base-path /var/lib/astar --state-pruning archive --state-pruning archive --rpc-external --ws-external --rpc-methods Safe --rpc-max-request-size 1049000 --rpc-max-response-size 1049000 --ws-max-connections 50000 --max-runtime-instances 64 --wasm-runtime-overrides /var/lib/astar/wasm --enable-evm-rpc --ethapi=txpool,debug,trace

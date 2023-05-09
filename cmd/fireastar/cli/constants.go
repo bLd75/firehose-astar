@@ -25,20 +25,20 @@ const (
 	// and importantly, they should be different than the `node` ones below. Each chain
 	// usually have at least P2P and RPC ports. We suggest to use the standard port on the
 	// `node` values below and increment the `reader` ones by 1.
-	ReaderNodeP2PPort string = "30304"
-	ReaderNodeRPCPort string = "8546"
+	ReaderNodeP2PPort string = "30433"
+	ReaderNodeRPCPort string = "9954"
 
 	// Those should be the port the native node is using for P2P and RPC respectively
 	// and importantly, they should be different than the `reader` ones above. We suggest
 	// to use the standard port on the `node` values here directly.
-	NodeP2PPort string = "30303"
-	NodeRPCPort string = "8545"
+	NodeP2PPort string = "30333"
+	NodeRPCPort string = "9944"
 
 	// This should be the standard name of the executable that is usually used to
 	// sync the chain with the blockchain network. For example on Ethereum where
 	// our standard instrumentation if using the Geth client, value is `geth`, on EOSIO
 	// chain, it's `nodeos`.
-	ChainExecutableName = "dummy-blockchain"
+	ChainExecutableName = "astar-collator"
 
 	//
 	/// Standard Values
@@ -51,7 +51,7 @@ const (
 	//
 	// The initial 18XXX prefix is different for every chain supported by Firehose.
 	// The current prefix is the one you should use for your chain. Once you have copied
-	// this whole repository, you should open a PR on firehose-acme to bump it again
+	// this whole repository, you should open a PR on firehose-astar to bump it again
 	// so the next team supporting Firehose will use 18XXX and so forth.
 	ReaderNodeGRPCAddr       string = ":18010"
 	ReaderNodeManagerAPIAddr string = ":18011"

@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       chain_version:
-        description: 'version of dummy-blockchain to use (if not specified, will use latest)'
+        description: 'version of astar-collator to use (if not specified, will use latest)'
         required: false
         type: string
 
@@ -59,7 +59,7 @@ jobs:
           echo "##[set-output name=release_train;]$(echo ${GITHUB_REF#refs/heads/release/})"
 
       - name: Build
-        run: go build -v -ldflags "-X main.version=${{ github.event.ref }} -X main.commit=${{ github.sha }} -X main.date=$(date -u +%Y-%m-%dT%H:%MZ)" -o ./fireacme ./cmd/fireacme
+        run: go build -v -ldflags "-X main.version=${{ github.event.ref }} -X main.commit=${{ github.sha }} -X main.date=$(date -u +%Y-%m-%dT%H:%MZ)" -o ./fireastar ./cmd/fireastar
 
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -133,8 +133,8 @@ jobs:
       - name: Set versions
         shell: bash
         run: |
-          docker pull ghcr.io/streamingfast/dummy-blockchain:${{ env.CHAIN_VERSION }}
-          echo VERSION=$(docker inspect --format='{{index .Config.Labels "org.opencontainers.image.version"}}' 'ghcr.io/streamingfast/dummy-blockchain':${{ env.CHAIN_VERSION }}) >> $GITHUB_ENV
+          docker pull staketechnologies/astar-collator:${{ env.CHAIN_VERSION }}
+          echo VERSION=$(docker inspect --format='{{index .Config.Labels "org.opencontainers.image.version"}}' 'staketechnologies/astar-collator':${{ env.CHAIN_VERSION }}) >> $GITHUB_ENV
           echo SF_VERSION=$(echo "${{ needs.build-vanilla.outputs.tags }}" | grep -Ev "(develop)" | head -n 1 |cut -d: -f2) >> $GITHUB_ENV
 
       - name: Generate docker tags/labels from github build context

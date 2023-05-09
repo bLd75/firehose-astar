@@ -1,10 +1,10 @@
 ARG CHAIN_VERSION=latest
 ARG SF_VERSION=latest
 
-FROM ghcr.io/streamingfast/dummy-blockchain:$CHAIN_VERSION as chain
-FROM ghcr.io/streamingfast/firehose-acme:$SF_VERSION
+FROM staketechnologies/astar-collator:$CHAIN_VERSION as chain
+FROM ghcr.io/streamingfast/firehose-astar:$SF_VERSION
 
-COPY --from=chain /app/dummy-blockchain /app/dummy-blockchain
+COPY --from=chain /usr/local/bin/astar-collator /app/astar-collator
 
-COPY tools/fireacme/motd_node_manager /etc/motd
-COPY tools/fireacme/scripts/. /usr/local/bin/
+COPY tools/fireastar/motd_node_manager /etc/motd
+COPY tools/fireastar/scripts/. /usr/local/bin/
