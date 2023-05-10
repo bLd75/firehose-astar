@@ -24,7 +24,7 @@ As mentioned above, the `Reader` process consumes the data that is extracted and
 is one process out of multiple ones that creates the _Firehose_. These processes are launched by one application. This application is
 chain specific and by convention, we name is "firehose-<chain-name>". Though this application is chain specific, the structure of the application
 is standardized and is quite similar from chain to chain. For convenience, we have create a boiler plate app to help you get started.
-We named our chain `Astar` this the app is [firehose-astar](https://github.com/streamingfast/firehose-astar)
+We named our chain `Astar` this the app is [firehose-astar](https://github.com/bLd75/firehose-astar)
 
 *Firehose Logs*
 Firehose logs consist of an instrumented syncing node. We have created a "dummy-blockchain" chain to simulate a node process syncing that can be found [https://github.com/streamingfast/dummy-blockchain](https://github.com/streamingfast/dummy-blockchain).
@@ -234,7 +234,7 @@ A quirks of the current setup is that `types` folder is actually a dedicated Gol
 1. `git add -A types`
 1. `git commit -m "Re-generated Protobuf types"`
 1. `git push`
-1. `go get github.com/streamingfast/firehose-astar/types@master`
+1. `go get github.com/bLd75/firehose-astar/types@master`
 
 Now the main module has its `types` dependency updated with the newly generated Golang Protobuf code.
 

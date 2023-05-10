@@ -18,4 +18,4 @@ import (
 	"github.com/streamingfast/logging"
 )
 
-var zlog, _ = logging.PackageLogger("tools", "github.com/streamingfast/firehose-astar/tools")
+var zlog, _ = logging.PackageLogger("tools", "github.com/bLd75/firehose-astar/tools")

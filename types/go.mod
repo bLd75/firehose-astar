@@ -1,4 +1,4 @@
-module github.com/streamingfast/firehose-astar/types
+module github.com/bLd75/firehose-astar/types
 
 go 1.16
 

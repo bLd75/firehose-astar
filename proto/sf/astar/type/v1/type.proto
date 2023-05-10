@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package sf.astar.type.v1;
 
-option go_package = "github.com/streamingfast/firehose-astar/types/pb/sf/astar/type/v1;pbastar";
+option go_package = "github.com/bLd75/firehose-astar/types/pb/sf/astar/type/v1;pbastar";
 
 message Block {
   uint64 height = 1;

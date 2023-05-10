@@ -2,7 +2,7 @@ specVersion: v0.1.0
 package:
   name: astar
   version: v0.0.1
-  url: https://github.com/streamingfast/firehose-astar
+  url: https://github.com/bLd75/firehose-astar
   doc: |
     Protobuf definitions for Substreams modules on Astar.
 

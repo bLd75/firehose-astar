@@ -20,7 +20,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/streamingfast/bstream"
-	pbastar "github.com/streamingfast/firehose-astar/types/pb/sf/astar/type/v1"
+	pbastar "github.com/bLd75/firehose-astar/types/pb/sf/astar/type/v1"
 	sftools "github.com/streamingfast/sf-tools"
 )
 

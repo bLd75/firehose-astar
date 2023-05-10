@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/streamingfast/firehose-astar/cmd/fireastar/cli"
+	"github.com/bLd75/firehose-astar/cmd/fireastar/cli"
 )
 
 // Commit sha1 value, injected via go build `ldflags` at build time

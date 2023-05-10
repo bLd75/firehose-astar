@@ -18,7 +18,7 @@ import (
 	"fmt"
 
 	"github.com/streamingfast/bstream"
-	pbastar "github.com/streamingfast/firehose-astar/types/pb/sf/astar/type/v1"
+	pbastar "github.com/bLd75/firehose-astar/types/pb/sf/astar/type/v1"
 	pbbstream "github.com/streamingfast/pbgo/sf/bstream/v1"
 	"google.golang.org/protobuf/proto"
 )

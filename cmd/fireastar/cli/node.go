@@ -9,8 +9,8 @@ import (
 	"github.com/spf13/viper"
 	"github.com/streamingfast/bstream/blockstream"
 	"github.com/streamingfast/dlauncher/launcher"
-	"github.com/streamingfast/firehose-astar/codec"
-	"github.com/streamingfast/firehose-astar/nodemanager"
+	"github.com/bLd75/firehose-astar/codec"
+	"github.com/bLd75/firehose-astar/nodemanager"
 	"github.com/streamingfast/logging"
 	nodeManager "github.com/streamingfast/node-manager"
 	nodeManagerApp "github.com/streamingfast/node-manager/app/node_manager2"
@@ -23,11 +23,11 @@ import (
 	"google.golang.org/grpc"
 )
 
-var nodeLogger, nodeTracer = logging.PackageLogger("node", "github.com/streamingfast/firehose-astar/node")
-var nodeAstarChainLogger, _ = logging.PackageLogger("node.astar", "github.com/streamingfast/firehose-astar/node/astar", DefaultLevelInfo)
+var nodeLogger, nodeTracer = logging.PackageLogger("node", "github.com/bLd75/firehose-astar/node")
+var nodeAstarChainLogger, _ = logging.PackageLogger("node.astar", "github.com/bLd75/firehose-astar/node/astar", DefaultLevelInfo)
 
-var readerLogger, readerTracer = logging.PackageLogger("reader", "github.com/streamingfast/firehose-astar/reader")
-var readerAstarChainLogger, _ = logging.PackageLogger("reader.astar", "github.com/streamingfast/firehose-astar/reader/astar", DefaultLevelInfo)
+var readerLogger, readerTracer = logging.PackageLogger("reader", "github.com/bLd75/firehose-astar/reader")
+var readerAstarChainLogger, _ = logging.PackageLogger("reader.astar", "github.com/bLd75/firehose-astar/reader/astar", DefaultLevelInfo)
 
 func registerCommonNodeFlags(cmd *cobra.Command, flagPrefix string, managerAPIAddr string) {
 	cmd.Flags().String(flagPrefix+"path", ChainExecutableName, FlagDescription(`

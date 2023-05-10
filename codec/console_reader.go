@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/streamingfast/bstream"
-	"github.com/streamingfast/firehose-astar/types"
-	pbastar "github.com/streamingfast/firehose-astar/types/pb/sf/astar/type/v1"
+	"github.com/bLd75/firehose-astar/types"
+	pbastar "github.com/bLd75/firehose-astar/types/pb/sf/astar/type/v1"
 	"go.uber.org/zap"
 )
 
