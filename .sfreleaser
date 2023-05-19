@@ -1,7 +1,7 @@
 global:
-  owner: streamingfast
-  project: firehose-acme
-  binary: fireacme
+  owner: bLd75
+  project: firehose-astar
+  binary: fireastar
   language: golang
   variant: application
 release:
