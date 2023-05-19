@@ -19,6 +19,7 @@
 *.spkg
 
 /fireastar
+/build
 /dist
 
 firehose-data
