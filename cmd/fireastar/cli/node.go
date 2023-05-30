@@ -5,12 +5,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/bLd75/firehose-astar/codec"
+	"github.com/bLd75/firehose-astar/nodemanager"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/streamingfast/bstream/blockstream"
 	"github.com/streamingfast/dlauncher/launcher"
-	"github.com/bLd75/firehose-astar/codec"
-	"github.com/bLd75/firehose-astar/nodemanager"
 	"github.com/streamingfast/logging"
 	nodeManager "github.com/streamingfast/node-manager"
 	nodeManagerApp "github.com/streamingfast/node-manager/app/node_manager2"
@@ -213,7 +213,7 @@ type nodeArgsByRole map[string]string
 
 func buildNodeArguments(nodeDataDir, nodeRole string, args string) ([]string, error) {
 	typeRoles := nodeArgsByRole{
-		"reader": "start --store-dir={node-data-dir} {extra-arg}",
+		"reader": "{extra-arg}",
 	}
 
 	argsString, ok := typeRoles[nodeRole]
